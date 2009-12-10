@@ -1,16 +1,16 @@
 require 'formula'
 
 class Libiconv <Formula
-  @url='http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz'
-  @homepage='http://www.gnu.org/software/libiconv/'
-  @md5='7ab33ebd26687c744a37264a330bbe9a'
+  url 'http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz'
+  homepage 'http://www.gnu.org/software/libiconv/'
+  md5 '7ab33ebd26687c744a37264a330bbe9a'
 end
 
 
 class Glib <Formula
-  @url='http://ftp.acc.umu.se/pub/gnome/sources/glib/2.20/glib-2.20.5.tar.bz2'
-  @md5='4c178b91d82ef80a2da3c26b772569c0'
-  @homepage='http://www.gtk.org'
+  url 'http://ftp.gnome.org/pub/gnome/sources/glib/2.22/glib-2.22.3.tar.bz2'
+  sha256 'edf1a42cfefc13dbb2c0973188a45e02908d6fe31e769306b190d15ace6c8b8a'
+  homepage 'http://www.gtk.org'
 
   depends_on 'pkg-config'
   depends_on 'gettext'
