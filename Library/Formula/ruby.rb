@@ -21,7 +21,8 @@ class Ruby <Formula
     args = [ "--prefix=#{prefix}",
             "--disable-debug",
             "--disable-dependency-tracking",
-            "--enable-shared" ]
+            "--enable-shared",
+            "--with-iconv-dir=/usr/" ]
 
     args << "--program-suffix=19" if ARGV.include? "--with-suffix"
 
