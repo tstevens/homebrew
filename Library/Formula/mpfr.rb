@@ -6,6 +6,10 @@ class Mpfr <Formula
   md5 '89e59fe665e2b3ad44a6789f40b059a0'
 
   depends_on 'gmp'
+  
+  def patches
+    {:p1 => ['http://www.mpfr.org/mpfr-current/patches']}
+  end
 
   def install
       configure_args = [
@@ -15,5 +19,6 @@ class Mpfr <Formula
       ]
     system "./configure", *configure_args
     system "make install"
+    system "make check"
   end
 end
