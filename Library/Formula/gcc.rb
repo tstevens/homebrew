@@ -12,6 +12,7 @@ class Gcc <Formula
   aka 'g++'
   
   def patches
+    # Corrects config.guess incorrectly choosing 32 bit builds on 64 bit capable hardware.
     {:p0 => DATA}
   end
   
@@ -37,8 +38,18 @@ class Gcc <Formula
     gmp = Formula.factory 'gmp'
     mpfr = Formula.factory 'mpfr'
     
-    system "./configure", "--prefix=#{prefix}", "--with-libiconv-prefix=#{iconv.prefix}", "--with-gmp=#{gmp.prefix}", "--with-mpfr=#{mpfr.prefix}",
-                          "--enable-languages=c,c++,fortran", "--with-tune=core2"
+    args = ["--prefix=#{prefix}", "--with-libiconv-prefix=#{iconv.prefix}", "--with-gmp=#{gmp.prefix}", "--with-mpfr=#{mpfr.prefix}",
+            "--enable-languages=c,c++,fortran"]
+    
+    # Optimize configure flags for certain chipsets. Allow configure to use defaults for others.
+    if MACOS_VERSION >= 10.6 and Hardware.is_64_bit?
+      @arch = Hardware.intel_family
+      if @arch == :core2 or @arch == :penryn
+        args << "--with-tune=core2"
+      end
+    end
+    
+    system "./configure", *args
     system "make"
     system "make install"
   end
