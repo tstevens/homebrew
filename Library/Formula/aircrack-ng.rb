@@ -1,10 +1,8 @@
 require 'formula'
 
 class AircrackNg <Formula
-  url 'http://nightly.aircrack-ng.org/aircrack-ng/trunk/aircrack-ng-trunk-2010-01-09-r1645.tar.gz'
+  head 'http://trac.aircrack-ng.org/svn/trunk/'
   homepage 'http://aircrack-ng.org/'
-  md5 '295c0fdddd578bf9ccc3dc77b407f987'
-  version 'r1645'
   
   def install
     # Force i386
@@ -15,5 +13,9 @@ class AircrackNg <Formula
     
     system "make"
     system "make prefix=#{prefix} install"
+  end
+  
+  def download_strategy
+    SubversionDownloadStrategy
   end
 end
