@@ -6,8 +6,9 @@ class Wxmac <Formula
   md5 '67e5eb6823907081fc979d41e00f93d7'
 
   def install
-    # Force i386
     ENV.gcc_4_2
+
+    # Force i386
     %w{ CFLAGS CXXFLAGS LDFLAGS OBJCFLAGS OBJCXXFLAGS }.each do |compiler_flag|
       ENV.remove compiler_flag, "-arch x86_64"
       ENV.append compiler_flag, "-arch i386"
