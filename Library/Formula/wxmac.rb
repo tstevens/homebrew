@@ -7,12 +7,13 @@ class Wxmac <Formula
 
   def install
     # Force i386
+    ENV.gcc_4_2
     %w{ CFLAGS CXXFLAGS LDFLAGS OBJCFLAGS OBJCXXFLAGS }.each do |compiler_flag|
       ENV.remove compiler_flag, "-arch x86_64"
       ENV.append compiler_flag, "-arch i386"
     end
 
-    system "./configure", "--prefix=#{prefix}", "--disable-debug", "--disable-dependency-tracking"
+    system "./configure", "--prefix=#{prefix}", "--enable-monolithic",  "--enable-unicode", "--enable-debug", "--enable-stl", "--enable-threads"
     system "make install"
   end
 end
