@@ -69,6 +69,10 @@ class RefreshBrew
     !@updated_formulae.empty?
   end
   
+  def pending_new_formulae?
+    !@added_formulae.empty?
+  end
+
   def current_revision
     in_prefix { execute(REVISION_COMMAND).strip }
   rescue
