@@ -136,7 +136,7 @@ begin
       end
 
   when 'up', 'update'
-    if system "/usr/bin/which -s git"
+    if system "/usr/bin/which -s git" and not ARGV.verbose?
       require 'update'
       updater = RefreshBrew.new
       old_revision = updater.current_revision
@@ -157,6 +157,10 @@ begin
           puts "No formulae were updated." unless updater.pending_formulae_changes?
         end
       end
+    elsif ARGV.verbose?
+      require 'update'
+      updater = RefreshBrew.new
+      updater.update_from_masterbrew!
     else
       abort "Please `brew install git' first."
     end
