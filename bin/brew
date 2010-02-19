@@ -149,6 +149,11 @@ begin
           ohai "The following formulae are new:"
           puts_columns updater.added_formulae
         end
+        ## Deleted Formulae
+        if updater.deleted_formulae?
+          ohai "The following formulae were removed:"
+          puts_columns updater.deleted_formulae
+        end
         ## Updated Formulae
         if updater.pending_formulae_changes?
           ohai "The following formulae were updated:"
